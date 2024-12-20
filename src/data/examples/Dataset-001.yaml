@@ -1,0 +1,7 @@
+# Example data object
+---
+description: This is an example dataset test instance that must conform to the DCAT_AP Dataset class. Which means 
+  that it must have a description and a title. 
+title: My lovely Test Dataset-001
+creator: 
+  - name: John Dough

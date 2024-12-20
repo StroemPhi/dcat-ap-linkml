@@ -1,0 +1,1905 @@
+@prefix adms: <http://www.w3.org/ns/adms#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix eli: <http://data.europa.eu/eli/ontology#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix iana: <https://www.iana.org/assignments/> .
+@prefix linkml: <https://w3id.org/linkml/> .
+@prefix linkmldcatap: <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap/> .
+@prefix locn: <http://www.w3.org/ns/locn#> .
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix spdx: <http://spdx.org/rdf/terms#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+linkmldcatap:Activity a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "Activity" ;
+    skos:definition "See [DCAT-AP specs:Activity](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Activity)" ;
+    skos:exactMatch prov:Activity ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:Attribution a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "Attribution" ;
+    rdfs:subClassOf linkmldcatap:SupportiveEntity ;
+    skos:definition "See [DCAT-AP specs:Attribution](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Attribution)" ;
+    skos:exactMatch prov:Attribution ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:CataloguedResource a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "CataloguedResource" ;
+    skos:definition "See [DCAT-AP specs:CataloguedResource](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#CataloguedResource)" ;
+    skos:exactMatch dcat:Resource ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:Checksum a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "Checksum" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty linkmldcatap:checksum_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty linkmldcatap:algorithm ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:hexBinary ;
+            owl:onProperty linkmldcatap:checksum_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty linkmldcatap:algorithm ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:ChecksumAlgorithm ;
+            owl:onProperty linkmldcatap:algorithm ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty linkmldcatap:checksum_value ],
+        linkmldcatap:SupportiveEntity ;
+    skos:definition "See [DCAT-AP specs:Checksum](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Checksum)" ;
+    skos:exactMatch spdx:Checksum ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:ChecksumAlgorithm a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "ChecksumAlgorithm" ;
+    rdfs:subClassOf linkmldcatap:SupportiveEntity ;
+    skos:definition "See [DCAT-AP specs:ChecksumAlgorithm](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#ChecksumAlgorithm)" ;
+    skos:exactMatch spdx:ChecksumAlgorithm ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:ConceptScheme a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "ConceptScheme" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty linkmldcatap:title ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty linkmldcatap:title ],
+        linkmldcatap:SupportiveEntity ;
+    skos:definition "See [DCAT-AP specs:ConceptScheme](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#ConceptScheme)" ;
+    skos:exactMatch skos:ConceptScheme ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:DatasetSeries a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "DatasetSeries" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:contact_point ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty linkmldcatap:publisher ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty linkmldcatap:title ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:frequency ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:Kind ;
+            owl:onProperty linkmldcatap:contact_point ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty linkmldcatap:release_date ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:release_date ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:temporal_coverage ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:modification_date ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty linkmldcatap:frequency ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty linkmldcatap:modification_date ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:Location ;
+            owl:onProperty linkmldcatap:geographical_coverage ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:Agent ;
+            owl:onProperty linkmldcatap:publisher ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty linkmldcatap:description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:geographical_coverage ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty linkmldcatap:modification_date ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:Frequency ;
+            owl:onProperty linkmldcatap:frequency ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:publisher ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:LegalResource ;
+            owl:onProperty linkmldcatap:applicable_legislation ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty linkmldcatap:release_date ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty linkmldcatap:title ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:applicable_legislation ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:PeriodOfTime ;
+            owl:onProperty linkmldcatap:temporal_coverage ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty linkmldcatap:description ] ;
+    skos:definition "See [DCAT-AP specs:DatasetSeries](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#DatasetSeries)" ;
+    skos:exactMatch dcat:DatasetSeries ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:Geometry a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "Geometry" ;
+    rdfs:subClassOf linkmldcatap:SupportiveEntity ;
+    skos:definition "See [DCAT-AP specs:Geometry](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Geometry)" ;
+    skos:exactMatch locn:Geometry ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:Identifier a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "Identifier" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty linkmldcatap:notation ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:Uri ;
+            owl:onProperty linkmldcatap:notation ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty linkmldcatap:notation ],
+        linkmldcatap:SupportiveEntity ;
+    skos:definition "See [DCAT-AP specs:Identifier](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Identifier)" ;
+    skos:exactMatch adms:Identifier ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:Policy a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "Policy" ;
+    rdfs:subClassOf linkmldcatap:SupportiveEntity ;
+    skos:definition "See [DCAT-AP specs:Policy](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Policy)" ;
+    skos:exactMatch odrl:Policy ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:ProvenanceStatement a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "ProvenanceStatement" ;
+    rdfs:subClassOf linkmldcatap:SupportiveEntity ;
+    skos:definition "See [DCAT-AP specs:ProvenanceStatement](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#ProvenanceStatement)" ;
+    skos:exactMatch dcterms:ProvenanceStatement ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:Relationship a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "Relationship" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty linkmldcatap:had_role ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty linkmldcatap:relation ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:Role ;
+            owl:onProperty linkmldcatap:had_role ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:Resource ;
+            owl:onProperty linkmldcatap:relation ],
+        linkmldcatap:SupportiveEntity ;
+    skos:definition "See [DCAT-AP specs:Relationship](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Relationship)" ;
+    skos:exactMatch dcat:Relationship ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:Role a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "Role" ;
+    rdfs:subClassOf linkmldcatap:SupportiveEntity ;
+    skos:definition "See [DCAT-AP specs:Role](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Role)" ;
+    skos:exactMatch dcat:Role ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+<http://publications.europa.eu/resource/authority/data-theme/AGRI> a <http://publications.europa.eu/resource/authority/data-theme>,
+        owl:Class ;
+    rdfs:label "Agriculture, fisheries, forestry and food" ;
+    rdfs:subClassOf <http://publications.europa.eu/resource/authority/data-theme> .
+
+<http://publications.europa.eu/resource/authority/data-theme/ECON> a <http://publications.europa.eu/resource/authority/data-theme>,
+        owl:Class ;
+    rdfs:label "Economy and finance" ;
+    rdfs:subClassOf <http://publications.europa.eu/resource/authority/data-theme> .
+
+<http://publications.europa.eu/resource/authority/data-theme/EDUC> a <http://publications.europa.eu/resource/authority/data-theme>,
+        owl:Class ;
+    rdfs:label "Education, culture and sport" ;
+    rdfs:subClassOf <http://publications.europa.eu/resource/authority/data-theme> .
+
+<http://publications.europa.eu/resource/authority/data-theme/ENER> a <http://publications.europa.eu/resource/authority/data-theme>,
+        owl:Class ;
+    rdfs:label "Energy" ;
+    rdfs:subClassOf <http://publications.europa.eu/resource/authority/data-theme> .
+
+<http://publications.europa.eu/resource/authority/data-theme/ENVI> a <http://publications.europa.eu/resource/authority/data-theme>,
+        owl:Class ;
+    rdfs:label "Environment" ;
+    rdfs:subClassOf <http://publications.europa.eu/resource/authority/data-theme> .
+
+<http://publications.europa.eu/resource/authority/data-theme/GOVE> a <http://publications.europa.eu/resource/authority/data-theme>,
+        owl:Class ;
+    rdfs:label "Government and public sector" ;
+    rdfs:subClassOf <http://publications.europa.eu/resource/authority/data-theme> .
+
+<http://publications.europa.eu/resource/authority/data-theme/HEAL> a <http://publications.europa.eu/resource/authority/data-theme>,
+        owl:Class ;
+    rdfs:label "Health" ;
+    rdfs:subClassOf <http://publications.europa.eu/resource/authority/data-theme> .
+
+<http://publications.europa.eu/resource/authority/data-theme/INTR> a <http://publications.europa.eu/resource/authority/data-theme>,
+        owl:Class ;
+    rdfs:label "International issues" ;
+    rdfs:subClassOf <http://publications.europa.eu/resource/authority/data-theme> .
+
+<http://publications.europa.eu/resource/authority/data-theme/JUST> a <http://publications.europa.eu/resource/authority/data-theme>,
+        owl:Class ;
+    rdfs:label "Justice, legal system and public safety" ;
+    rdfs:subClassOf <http://publications.europa.eu/resource/authority/data-theme> .
+
+<http://publications.europa.eu/resource/authority/data-theme/OP_DATPRO> a <http://publications.europa.eu/resource/authority/data-theme>,
+        owl:Class ;
+    rdfs:label "Provisional data" ;
+    rdfs:subClassOf <http://publications.europa.eu/resource/authority/data-theme> .
+
+<http://publications.europa.eu/resource/authority/data-theme/REGI> a <http://publications.europa.eu/resource/authority/data-theme>,
+        owl:Class ;
+    rdfs:label "Regions and cities" ;
+    rdfs:subClassOf <http://publications.europa.eu/resource/authority/data-theme> .
+
+<http://publications.europa.eu/resource/authority/data-theme/SOCI> a <http://publications.europa.eu/resource/authority/data-theme>,
+        owl:Class ;
+    rdfs:label "Population and society" ;
+    rdfs:subClassOf <http://publications.europa.eu/resource/authority/data-theme> .
+
+<http://publications.europa.eu/resource/authority/data-theme/TECH> a <http://publications.europa.eu/resource/authority/data-theme>,
+        owl:Class ;
+    rdfs:label "Science and technology" ;
+    rdfs:subClassOf <http://publications.europa.eu/resource/authority/data-theme> .
+
+<http://publications.europa.eu/resource/authority/data-theme/TRAN> a <http://publications.europa.eu/resource/authority/data-theme>,
+        owl:Class ;
+    rdfs:label "Transport" ;
+    rdfs:subClassOf <http://publications.europa.eu/resource/authority/data-theme> .
+
+linkmldcatap:Catalogue a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "Catalogue" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:applicable_legislation ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:Agent ;
+            owl:onProperty linkmldcatap:creator ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:Catalogue ;
+            owl:onProperty linkmldcatap:catalogue ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:release_date ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:modification_date ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:DataService ;
+            owl:onProperty linkmldcatap:service ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty linkmldcatap:modification_date ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty linkmldcatap:licence ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty linkmldcatap:title ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty linkmldcatap:modification_date ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:Location ;
+            owl:onProperty linkmldcatap:geographical_coverage ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty linkmldcatap:release_date ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:RightsStatement ;
+            owl:onProperty linkmldcatap:rights ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:service ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty linkmldcatap:description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty linkmldcatap:release_date ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:homepage ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:Catalogue ;
+            owl:onProperty linkmldcatap:has_part ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:temporal_coverage ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:geographical_coverage ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty linkmldcatap:rights ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty linkmldcatap:creator ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:has_dataset ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:licence ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:CatalogueRecord ;
+            owl:onProperty linkmldcatap:record ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:LicenseDocument ;
+            owl:onProperty linkmldcatap:licence ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:LegalResource ;
+            owl:onProperty linkmldcatap:applicable_legislation ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:Document ;
+            owl:onProperty linkmldcatap:homepage ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:creator ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:ConceptScheme ;
+            owl:onProperty linkmldcatap:themes ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:Dataset ;
+            owl:onProperty linkmldcatap:has_dataset ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:PeriodOfTime ;
+            owl:onProperty linkmldcatap:temporal_coverage ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:LinguisticSystem ;
+            owl:onProperty linkmldcatap:language ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:record ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty linkmldcatap:homepage ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty linkmldcatap:description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty linkmldcatap:publisher ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:has_part ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty linkmldcatap:title ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:rights ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:catalogue ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:language ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:themes ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty linkmldcatap:publisher ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:Agent ;
+            owl:onProperty linkmldcatap:publisher ] ;
+    skos:definition "See [DCAT-AP specs:Catalogue](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Catalogue)" ;
+    skos:exactMatch dcat:Catalog ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:CatalogueRecord a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "CatalogueRecord" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:description ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty linkmldcatap:primary_topic ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty linkmldcatap:listing_date ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty linkmldcatap:modification_date ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty linkmldcatap:source_metadata ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:CataloguedResource ;
+            owl:onProperty linkmldcatap:primary_topic ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:source_metadata ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:LinguisticSystem ;
+            owl:onProperty linkmldcatap:language ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:change_type ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:listing_date ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:title ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty linkmldcatap:change_type ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty linkmldcatap:modification_date ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:CatalogueRecord ;
+            owl:onProperty linkmldcatap:source_metadata ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:language ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty linkmldcatap:listing_date ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty linkmldcatap:primary_topic ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty linkmldcatap:title ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:application_profile ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:Concept ;
+            owl:onProperty linkmldcatap:change_type ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty linkmldcatap:description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:Standard ;
+            owl:onProperty linkmldcatap:application_profile ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty linkmldcatap:modification_date ] ;
+    skos:definition "See [DCAT-AP specs:CatalogueRecord](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#CatalogueRecord)" ;
+    skos:exactMatch dcat:CatalogRecord ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:DataService a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "DataService" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:MediaTypeOrExtent ;
+            owl:onProperty linkmldcatap:format ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:format ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:Resource ;
+            owl:onProperty linkmldcatap:endpoint_URL ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty linkmldcatap:title ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty linkmldcatap:access_rights ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:documentation ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:access_rights ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:licence ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:LicenseDocument ;
+            owl:onProperty linkmldcatap:licence ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty linkmldcatap:description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:contact_point ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:Resource ;
+            owl:onProperty linkmldcatap:endpoint_description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:keyword ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:Dataset ;
+            owl:onProperty linkmldcatap:serves_dataset ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:theme ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:Standard ;
+            owl:onProperty linkmldcatap:conforms_to ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:Kind ;
+            owl:onProperty linkmldcatap:contact_point ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty linkmldcatap:endpoint_URL ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:description ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty linkmldcatap:publisher ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:Document ;
+            owl:onProperty linkmldcatap:landing_page ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:LegalResource ;
+            owl:onProperty linkmldcatap:applicable_legislation ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:landing_page ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty linkmldcatap:keyword ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty linkmldcatap:licence ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:RightsStatement ;
+            owl:onProperty linkmldcatap:access_rights ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:endpoint_description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty linkmldcatap:title ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:applicable_legislation ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:serves_dataset ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:Concept ;
+            owl:onProperty linkmldcatap:theme ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:Agent ;
+            owl:onProperty linkmldcatap:publisher ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:conforms_to ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:publisher ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:Document ;
+            owl:onProperty linkmldcatap:documentation ] ;
+    skos:definition "See [DCAT-AP specs:DataService](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#DataService)" ;
+    skos:exactMatch dcat:DataService ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:Distribution a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "Distribution" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty linkmldcatap:byte_size ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:download_URL ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty linkmldcatap:release_date ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:has_policy ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:licence ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:release_date ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:RightsStatement ;
+            owl:onProperty linkmldcatap:rights ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:MediaTypeOrExtent ;
+            owl:onProperty linkmldcatap:format ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:availability ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty linkmldcatap:has_policy ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:Policy ;
+            owl:onProperty linkmldcatap:has_policy ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty linkmldcatap:modification_date ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty linkmldcatap:availability ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:packaging_format ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty linkmldcatap:description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:rights ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty linkmldcatap:release_date ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty linkmldcatap:access_URL ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:linked_schemas ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:Resource ;
+            owl:onProperty linkmldcatap:access_URL ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:Standard ;
+            owl:onProperty linkmldcatap:linked_schemas ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:documentation ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty linkmldcatap:packaging_format ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:media_type ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:byte_size ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:Concept ;
+            owl:onProperty linkmldcatap:availability ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:MediaType ;
+            owl:onProperty linkmldcatap:compression_format ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:duration ;
+            owl:onProperty linkmldcatap:temporal_resolution ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:spatial_resolution ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:language ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty linkmldcatap:modification_date ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:MediaType ;
+            owl:onProperty linkmldcatap:media_type ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:DataService ;
+            owl:onProperty linkmldcatap:access_service ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:modification_date ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty linkmldcatap:checksum ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty linkmldcatap:rights ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty linkmldcatap:title ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty linkmldcatap:licence ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:temporal_resolution ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:status ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:LinguisticSystem ;
+            owl:onProperty linkmldcatap:language ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:Concept ;
+            owl:onProperty linkmldcatap:status ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty linkmldcatap:spatial_resolution ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:compression_format ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:Document ;
+            owl:onProperty linkmldcatap:documentation ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty linkmldcatap:temporal_resolution ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:MediaType ;
+            owl:onProperty linkmldcatap:packaging_format ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:title ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:checksum ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:LicenseDocument ;
+            owl:onProperty linkmldcatap:licence ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty linkmldcatap:media_type ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:nonNegativeInteger ;
+            owl:onProperty linkmldcatap:byte_size ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty linkmldcatap:compression_format ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:access_service ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:applicable_legislation ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:LegalResource ;
+            owl:onProperty linkmldcatap:applicable_legislation ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty linkmldcatap:status ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:format ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:Resource ;
+            owl:onProperty linkmldcatap:download_URL ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:Checksum ;
+            owl:onProperty linkmldcatap:checksum ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:Decimal ;
+            owl:onProperty linkmldcatap:spatial_resolution ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty linkmldcatap:format ] ;
+    skos:definition "See [DCAT-AP specs:Distribution](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Distribution)" ;
+    skos:exactMatch dcat:Distribution ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:Frequency a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "Frequency" ;
+    rdfs:subClassOf linkmldcatap:SupportiveEntity ;
+    skos:definition "See [DCAT-AP specs:Frequency](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Frequency)" ;
+    skos:exactMatch dcterms:Frequency ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:MediaTypeOrExtent a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "MediaTypeOrExtent" ;
+    rdfs:subClassOf linkmldcatap:SupportiveEntity ;
+    skos:definition "See [DCAT-AP specs:MediaTypeOrExtent](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#MediaTypeOrExtent)" ;
+    skos:exactMatch dcterms:MediaTypeOrExtent ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:TimeInstant a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "TimeInstant" ;
+    rdfs:subClassOf linkmldcatap:SupportiveEntity ;
+    skos:definition "See [DCAT-AP specs:TimeInstant](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#TimeInstant)" ;
+    skos:exactMatch time:Instant ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:access_URL a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "access_URL" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:access_service a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "access_service" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:application_profile a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "application_profile" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:catalogue a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "catalogue" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:dataset_distribution a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "dataset_distribution" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:download_URL a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "download_URL" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:endpoint_URL a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "endpoint_URL" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:endpoint_description a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "endpoint_description" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:had_role a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "had_role" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:has_dataset a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "has_dataset" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:has_part a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "has_part" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:has_version a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "has_version" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:hexBinary a owl:Class,
+        linkml:TypeDefinition ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onDataRange linkmldcatap:hexBinary ;
+            owl:onProperty linkml:topValue ;
+            owl:qualifiedCardinality 1 ] .
+
+linkmldcatap:identifier a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "identifier" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:in_series a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "in_series" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:is_referenced_by a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "is_referenced_by" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:linked_schemas a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "linked_schemas" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:name a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "name" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:nonNegativeInteger a owl:Class,
+        linkml:TypeDefinition ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onDataRange linkmldcatap:nonNegativeInteger ;
+            owl:onProperty linkml:topValue ;
+            owl:qualifiedCardinality 1 ] .
+
+linkmldcatap:other_identifier a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "other_identifier" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:preferred_label a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "preferred_label" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:provenance a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "provenance" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:qualified_attribution a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "qualified_attribution" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:qualified_relation a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "qualified_relation" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:record a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "record" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:related_resource a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "related_resource" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:relation a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "relation" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:sample a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "sample" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:serves_dataset a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "serves_dataset" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:service a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "service" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:source a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "source" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:themes a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "themes" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:version_notes a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "version_notes" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:was_generated_by a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "was_generated_by" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+<https://www.iana.org/assignments/top-level-media-types#application> a owl:Class,
+        iana:top-level-media-types ;
+    rdfs:label "application" ;
+    rdfs:subClassOf iana:top-level-media-types .
+
+<https://www.iana.org/assignments/top-level-media-types#audio> a owl:Class,
+        iana:top-level-media-types ;
+    rdfs:label "audio" ;
+    rdfs:subClassOf iana:top-level-media-types .
+
+<https://www.iana.org/assignments/top-level-media-types#example> a owl:Class,
+        iana:top-level-media-types ;
+    rdfs:label "example" ;
+    rdfs:subClassOf iana:top-level-media-types .
+
+<https://www.iana.org/assignments/top-level-media-types#font> a owl:Class,
+        iana:top-level-media-types ;
+    rdfs:label "font" ;
+    rdfs:subClassOf iana:top-level-media-types .
+
+<https://www.iana.org/assignments/top-level-media-types#haptics> a owl:Class,
+        iana:top-level-media-types ;
+    rdfs:label "haptics" ;
+    rdfs:subClassOf iana:top-level-media-types .
+
+<https://www.iana.org/assignments/top-level-media-types#image> a owl:Class,
+        iana:top-level-media-types ;
+    rdfs:label "image" ;
+    rdfs:subClassOf iana:top-level-media-types .
+
+<https://www.iana.org/assignments/top-level-media-types#message> a owl:Class,
+        iana:top-level-media-types ;
+    rdfs:label "message" ;
+    rdfs:subClassOf iana:top-level-media-types .
+
+<https://www.iana.org/assignments/top-level-media-types#model> a owl:Class,
+        iana:top-level-media-types ;
+    rdfs:label "model" ;
+    rdfs:subClassOf iana:top-level-media-types .
+
+<https://www.iana.org/assignments/top-level-media-types#multipart> a owl:Class,
+        iana:top-level-media-types ;
+    rdfs:label "multipart" ;
+    rdfs:subClassOf iana:top-level-media-types .
+
+<https://www.iana.org/assignments/top-level-media-types#text> a owl:Class,
+        iana:top-level-media-types ;
+    rdfs:label "text" ;
+    rdfs:subClassOf iana:top-level-media-types .
+
+<https://www.iana.org/assignments/top-level-media-types#video> a owl:Class,
+        iana:top-level-media-types ;
+    rdfs:label "video" ;
+    rdfs:subClassOf iana:top-level-media-types .
+
+linkmldcatap:Kind a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "Kind" ;
+    rdfs:subClassOf linkmldcatap:SupportiveEntity ;
+    skos:definition "See [DCAT-AP specs:Kind](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Kind)" ;
+    skos:exactMatch vcard:Kind ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:LicenseDocument a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "LicenseDocument" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:type ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:Concept ;
+            owl:onProperty linkmldcatap:type ],
+        linkmldcatap:SupportiveEntity ;
+    skos:definition "See [DCAT-AP specs:LicenseDocument](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#LicenseDocument)" ;
+    skos:exactMatch dcterms:LicenseDocument ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:Location a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "Location" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty linkmldcatap:bbox ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:geometry ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty linkmldcatap:centroid ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:centroid ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty linkmldcatap:bbox ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:Geometry ;
+            owl:onProperty linkmldcatap:geometry ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty linkmldcatap:geometry ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:bbox ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty linkmldcatap:centroid ],
+        linkmldcatap:SupportiveEntity ;
+    skos:definition "See [DCAT-AP specs:Location](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Location)" ;
+    skos:exactMatch dcterms:Location ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:MediaType a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "MediaType" ;
+    rdfs:subClassOf linkmldcatap:SupportiveEntity ;
+    skos:definition "See [DCAT-AP specs:MediaType](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#MediaType)" ;
+    skos:exactMatch dcterms:MediaType ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:PeriodOfTime a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "PeriodOfTime" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty linkmldcatap:start_date ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:end ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty linkmldcatap:end ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty linkmldcatap:beginning ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty linkmldcatap:end_date ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:TimeInstant ;
+            owl:onProperty linkmldcatap:end ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty linkmldcatap:start_date ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty linkmldcatap:end_date ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:end_date ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:TimeInstant ;
+            owl:onProperty linkmldcatap:beginning ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:start_date ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:beginning ],
+        linkmldcatap:SupportiveEntity ;
+    skos:definition "See [DCAT-AP specs:PeriodOfTime](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#PeriodOfTime)" ;
+    skos:exactMatch dcterms:PeriodOfTime ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:algorithm a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "algorithm" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:availability a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "availability" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:bbox a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "bbox" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:beginning a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "beginning" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:byte_size a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "byte_size" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:centroid a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "centroid" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:change_type a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "change_type" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:checksum a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "checksum" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:checksum_value a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "checksum_value" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:compression_format a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "compression_format" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:duration a owl:Class,
+        linkml:TypeDefinition ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onDataRange linkmldcatap:duration ;
+            owl:onProperty linkml:topValue ;
+            owl:qualifiedCardinality 1 ] .
+
+linkmldcatap:end a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "end" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:end_date a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "end_date" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:geometry a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "geometry" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:has_policy a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "has_policy" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:homepage a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "homepage" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:listing_date a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "listing_date" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:media_type a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "media_type" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:notation a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "notation" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:packaging_format a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "packaging_format" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:primary_topic a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "primary_topic" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:source_metadata a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "source_metadata" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:start_date a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "start_date" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:status a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "status" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:version a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "version" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkml:topValue a owl:DatatypeProperty ;
+    rdfs:label "value" .
+
+linkmldcatap:Dataset a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "Dataset" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:conforms_to ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:Resource ;
+            owl:onProperty linkmldcatap:is_referenced_by ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty linkmldcatap:version ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:LegalResource ;
+            owl:onProperty linkmldcatap:applicable_legislation ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty linkmldcatap:modification_date ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:access_rights ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:dataset_distribution ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:related_resource ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:Agent ;
+            owl:onProperty linkmldcatap:creator ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:Agent ;
+            owl:onProperty linkmldcatap:publisher ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:sample ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:other_identifier ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:Resource ;
+            owl:onProperty linkmldcatap:related_resource ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:Attribution ;
+            owl:onProperty linkmldcatap:qualified_attribution ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:qualified_attribution ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:theme ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:Identifier ;
+            owl:onProperty linkmldcatap:other_identifier ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:Dataset ;
+            owl:onProperty linkmldcatap:source ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:provenance ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:publisher ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty linkmldcatap:modification_date ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:temporal_coverage ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty linkmldcatap:publisher ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:contact_point ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty linkmldcatap:temporal_resolution ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty linkmldcatap:access_rights ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:language ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty linkmldcatap:release_date ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty linkmldcatap:release_date ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:Frequency ;
+            owl:onProperty linkmldcatap:frequency ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:frequency ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:DatasetSeries ;
+            owl:onProperty linkmldcatap:in_series ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:creator ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty linkmldcatap:frequency ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:duration ;
+            owl:onProperty linkmldcatap:temporal_resolution ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:was_generated_by ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:spatial_resolution ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:Kind ;
+            owl:onProperty linkmldcatap:contact_point ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:release_date ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:Relationship ;
+            owl:onProperty linkmldcatap:qualified_relation ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:type ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty linkmldcatap:version_notes ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:LinguisticSystem ;
+            owl:onProperty linkmldcatap:language ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:Standard ;
+            owl:onProperty linkmldcatap:conforms_to ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:source ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:RightsStatement ;
+            owl:onProperty linkmldcatap:access_rights ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:version_notes ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:Distribution ;
+            owl:onProperty linkmldcatap:dataset_distribution ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:Concept ;
+            owl:onProperty linkmldcatap:theme ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:applicable_legislation ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:has_version ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:Concept ;
+            owl:onProperty linkmldcatap:type ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty linkmldcatap:spatial_resolution ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:Decimal ;
+            owl:onProperty linkmldcatap:spatial_resolution ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:in_series ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:geographical_coverage ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty linkmldcatap:description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:Document ;
+            owl:onProperty linkmldcatap:landing_page ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:temporal_resolution ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:documentation ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty linkmldcatap:version ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:is_referenced_by ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:Activity ;
+            owl:onProperty linkmldcatap:was_generated_by ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:keyword ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:identifier ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:modification_date ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:Location ;
+            owl:onProperty linkmldcatap:geographical_coverage ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:Uri ;
+            owl:onProperty linkmldcatap:identifier ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:landing_page ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty linkmldcatap:description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:PeriodOfTime ;
+            owl:onProperty linkmldcatap:temporal_coverage ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty linkmldcatap:title ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty linkmldcatap:keyword ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:Distribution ;
+            owl:onProperty linkmldcatap:sample ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:ProvenanceStatement ;
+            owl:onProperty linkmldcatap:provenance ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:version ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty linkmldcatap:title ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:qualified_relation ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:Document ;
+            owl:onProperty linkmldcatap:documentation ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:Dataset ;
+            owl:onProperty linkmldcatap:has_version ] ;
+    skos:definition "See [DCAT-AP specs:Dataset](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Dataset)" ;
+    skos:exactMatch dcat:Dataset ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:LinguisticSystem a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "LinguisticSystem" ;
+    rdfs:subClassOf linkmldcatap:SupportiveEntity ;
+    skos:definition "See [DCAT-AP specs:LinguisticSystem](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#LinguisticSystem)" ;
+    skos:exactMatch dcterms:LinguisticSystem ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:RightsStatement a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "RightsStatement" ;
+    rdfs:subClassOf linkmldcatap:SupportiveEntity ;
+    skos:definition "See [DCAT-AP specs:RightsStatement](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#RightsStatement)" ;
+    skos:exactMatch dcterms:RightsStatement ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:Standard a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "Standard" ;
+    rdfs:subClassOf linkmldcatap:SupportiveEntity ;
+    skos:definition "See [DCAT-AP specs:Standard](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Standard)" ;
+    skos:exactMatch dcterms:Standard ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:conforms_to a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "conforms_to" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:keyword a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "keyword" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:landing_page a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "landing_page" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:theme a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "theme" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:LegalResource a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "LegalResource" ;
+    rdfs:subClassOf linkmldcatap:SupportiveEntity ;
+    skos:definition "See [DCAT-AP specs:LegalResource](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#LegalResource)" ;
+    skos:exactMatch eli:LegalResource ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:creator a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "creator" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:format a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "format" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:Agent a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "Agent" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty linkmldcatap:type ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty linkmldcatap:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkmldcatap:Concept ;
+            owl:onProperty linkmldcatap:type ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty linkmldcatap:type ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty linkmldcatap:name ],
+        linkmldcatap:SupportiveEntity ;
+    skos:definition "See [DCAT-AP specs:Agent](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Agent)" ;
+    skos:exactMatch foaf:Agent ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:Document a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "Document" ;
+    rdfs:subClassOf linkmldcatap:SupportiveEntity ;
+    skos:definition "See [DCAT-AP specs:Document](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Document)" ;
+    skos:exactMatch foaf:Document ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:access_rights a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "access_rights" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:contact_point a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "contact_point" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:documentation a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "documentation" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:frequency a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "frequency" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:geographical_coverage a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "geographical_coverage" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:rights a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "rights" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:spatial_resolution a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "spatial_resolution" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:temporal_coverage a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "temporal_coverage" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:temporal_resolution a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "temporal_resolution" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:Resource a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "Resource" ;
+    rdfs:subClassOf linkmldcatap:SupportiveEntity ;
+    skos:definition "See [DCAT-AP specs:Resource](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Resource)" ;
+    skos:exactMatch rdfs:Resource ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:type a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "type" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:Concept a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "Concept" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty linkmldcatap:preferred_label ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty linkmldcatap:preferred_label ],
+        linkmldcatap:SupportiveEntity ;
+    skos:definition "See [DCAT-AP specs:Concept](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Concept)" ;
+    skos:exactMatch skos:Concept ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:language a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "language" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:licence a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "licence" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:applicable_legislation a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "applicable_legislation" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:description a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "description" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:publisher a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "publisher" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:release_date a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "release_date" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:title a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "title" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+linkmldcatap:modification_date a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "modification_date" ;
+    skos:definition "This slot is described in more detail within the class in which it is used." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+iana:top-level-media-types a owl:Class,
+        linkml:EnumDefinition ;
+    owl:unionOf ( <https://www.iana.org/assignments/top-level-media-types#application> <https://www.iana.org/assignments/top-level-media-types#audio> <https://www.iana.org/assignments/top-level-media-types#example> <https://www.iana.org/assignments/top-level-media-types#font> <https://www.iana.org/assignments/top-level-media-types#haptics> <https://www.iana.org/assignments/top-level-media-types#image> <https://www.iana.org/assignments/top-level-media-types#message> <https://www.iana.org/assignments/top-level-media-types#model> <https://www.iana.org/assignments/top-level-media-types#multipart> <https://www.iana.org/assignments/top-level-media-types#text> <https://www.iana.org/assignments/top-level-media-types#video> ) ;
+    linkml:permissible_values <https://www.iana.org/assignments/top-level-media-types#application>,
+        <https://www.iana.org/assignments/top-level-media-types#audio>,
+        <https://www.iana.org/assignments/top-level-media-types#example>,
+        <https://www.iana.org/assignments/top-level-media-types#font>,
+        <https://www.iana.org/assignments/top-level-media-types#haptics>,
+        <https://www.iana.org/assignments/top-level-media-types#image>,
+        <https://www.iana.org/assignments/top-level-media-types#message>,
+        <https://www.iana.org/assignments/top-level-media-types#model>,
+        <https://www.iana.org/assignments/top-level-media-types#multipart>,
+        <https://www.iana.org/assignments/top-level-media-types#text>,
+        <https://www.iana.org/assignments/top-level-media-types#video> .
+
+linkmldcatap:SupportiveEntity a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "SupportiveEntity" ;
+    skos:definition "The supportive entities are supporting the main entities in the Application Profile. They are included in the Application Profile because they form the range of properties." ;
+    skos:inScheme <https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> .
+
+<http://publications.europa.eu/resource/authority/data-theme> a owl:Class,
+        linkml:EnumDefinition ;
+    owl:unionOf ( <http://publications.europa.eu/resource/authority/data-theme/AGRI> <http://publications.europa.eu/resource/authority/data-theme/ECON> <http://publications.europa.eu/resource/authority/data-theme/EDUC> <http://publications.europa.eu/resource/authority/data-theme/ENER> <http://publications.europa.eu/resource/authority/data-theme/ENVI> <http://publications.europa.eu/resource/authority/data-theme/GOVE> <http://publications.europa.eu/resource/authority/data-theme/HEAL> <http://publications.europa.eu/resource/authority/data-theme/INTR> <http://publications.europa.eu/resource/authority/data-theme/JUST> <http://publications.europa.eu/resource/authority/data-theme/OP_DATPRO> <http://publications.europa.eu/resource/authority/data-theme/REGI> <http://publications.europa.eu/resource/authority/data-theme/SOCI> <http://publications.europa.eu/resource/authority/data-theme/TECH> <http://publications.europa.eu/resource/authority/data-theme/TRAN> ) ;
+    linkml:permissible_values <http://publications.europa.eu/resource/authority/data-theme/AGRI>,
+        <http://publications.europa.eu/resource/authority/data-theme/ECON>,
+        <http://publications.europa.eu/resource/authority/data-theme/EDUC>,
+        <http://publications.europa.eu/resource/authority/data-theme/ENER>,
+        <http://publications.europa.eu/resource/authority/data-theme/ENVI>,
+        <http://publications.europa.eu/resource/authority/data-theme/GOVE>,
+        <http://publications.europa.eu/resource/authority/data-theme/HEAL>,
+        <http://publications.europa.eu/resource/authority/data-theme/INTR>,
+        <http://publications.europa.eu/resource/authority/data-theme/JUST>,
+        <http://publications.europa.eu/resource/authority/data-theme/OP_DATPRO>,
+        <http://publications.europa.eu/resource/authority/data-theme/REGI>,
+        <http://publications.europa.eu/resource/authority/data-theme/SOCI>,
+        <http://publications.europa.eu/resource/authority/data-theme/TECH>,
+        <http://publications.europa.eu/resource/authority/data-theme/TRAN> .
+
+<https://stroemphi.github.io/dcat-4C-ap/dcat-4nfdi-ap/dcat-ap.yaml> a owl:Ontology ;
+    rdfs:label "dcat-ap" ;
+    dcterms:license "CC-BY 4.0" ;
+    dcterms:source <https://semiceu.github.io/DCAT-AP/releases/3.0.0> ;
+    dcterms:title "LinkML schema representation of DCAT-AP 3.0.0" ;
+    skos:definition """This LinkML schema representation of DCAT-AP 3.0.0 was automatically created from these [JSON-LD SHACL shapes](https://github.com/SEMICeu/DCAT-AP/blob/master/releases/3.0.0/shacl/dcat-ap-SHACL.jsonld) using this Python script: https://github.com/StroemPhi/dcat-4C-ap/tree/main/src/dcat-ap_shacl_2_linkml.py.
+NOTE: The JSON-LD SHACL constraints published with the [Juli 3.0.0 GitHub release](https://github.com/SEMICeu/DCAT-AP/releases/tag/3.0.0) and in the [3.0.0. release branch](https://github.com/SEMICeu/DCAT-AP/tree/3.0.0) are different from the ones in https://github.com/SEMICeu/DCAT-AP/tree/master/releases/3.0.0. Also the TTL shapes provided in the latter in the HTML folder differ from the ones in the SHACL folder, in that they declare dcat:Resource and dcatap:TemporalLiteral as unions of the dcat:Resource subclasses respectively different XML Schema datatypes for date and time. We address this with 'helper code' in the conversion script. """ .
+

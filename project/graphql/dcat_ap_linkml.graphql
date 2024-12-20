@@ -1,0 +1,305 @@
+# metamodel_version: 1.7.0
+enum DatasetThemes
+  {
+    Agriculture__COMMA___fisheries__COMMA___forestry_and_food
+    Economy_and_finance
+    Education__COMMA___culture_and_sport
+    Energy
+    Environment
+    Government_and_public_sector
+    Health
+    International_issues
+    Justice__COMMA___legal_system_and_public_safety
+    Provisional_data
+    Regions_and_cities
+    Population_and_society
+    Science_and_technology
+    Transport
+  }
+
+enum TopLevelMediaTypes
+  {
+    application
+    audio
+    example
+    font
+    haptics
+    image
+    message
+    model
+    multipart
+    text
+    video
+  }
+
+type Activity
+  {
+  }
+
+type Agent
+  {
+    name: [String]!
+    type: Concept
+  }
+
+type Attribution
+  {
+  }
+
+type Catalogue
+  {
+    applicableLegislation: [LegalResource]
+    catalogue: [Catalogue]
+    creator: Agent
+    description: [String]!
+    geographicalCoverage: [Location]
+    hasDataset: [Dataset]
+    hasPart: [Catalogue]
+    homepage: Document
+    language: [LinguisticSystem]
+    licence: LicenseDocument
+    modificationDate: String
+    publisher: Agent!
+    record: [CatalogueRecord]
+    releaseDate: String
+    rights: RightsStatement
+    service: [DataService]
+    temporalCoverage: [PeriodOfTime]
+    themes: [ConceptScheme]
+    title: [String]!
+  }
+
+interface CataloguedResource
+  {
+  }
+
+type CatalogueRecord
+  {
+    applicationProfile: [Standard]
+    changeType: Concept
+    description: [String]
+    language: [LinguisticSystem]
+    listingDate: String
+    modificationDate: String!
+    primaryTopic: CataloguedResource!
+    sourceMetadata: CatalogueRecord
+    title: [String]
+  }
+
+type Checksum
+  {
+    algorithm: ChecksumAlgorithm!
+    checksumValue: HexBinary!
+  }
+
+type ChecksumAlgorithm
+  {
+  }
+
+type Concept
+  {
+    preferredLabel: [String]!
+  }
+
+type ConceptScheme
+  {
+    title: [String]!
+  }
+
+type DataService
+  {
+    accessRights: RightsStatement
+    applicableLegislation: [LegalResource]
+    conformsTo: [Standard]
+    contactPoint: [Kind]
+    description: [String]
+    documentation: [Document]
+    endpointURL: [Resource]!
+    endpointDescription: [Resource]
+    format: [MediaTypeOrExtent]
+    keyword: [String]
+    landingPage: [Document]
+    licence: LicenseDocument
+    publisher: Agent
+    servesDataset: [Dataset]
+    theme: [Concept]
+    title: [String]!
+  }
+
+type Dataset
+  {
+    accessRights: RightsStatement
+    applicableLegislation: [LegalResource]
+    conformsTo: [Standard]
+    contactPoint: [Kind]
+    creator: [Agent]
+    datasetDistribution: [Distribution]
+    description: [String]!
+    documentation: [Document]
+    frequency: Frequency
+    geographicalCoverage: [Location]
+    hasVersion: [Dataset]
+    identifier: [Uri]
+    inSeries: [DatasetSeries]
+    isReferencedBy: [Resource]
+    keyword: [String]
+    landingPage: [Document]
+    language: [LinguisticSystem]
+    modificationDate: String
+    otherIdentifier: [Identifier]
+    provenance: [ProvenanceStatement]
+    publisher: Agent
+    qualifiedAttribution: [Attribution]
+    qualifiedRelation: [Relationship]
+    relatedResource: [Resource]
+    releaseDate: String
+    sample: [Distribution]
+    source: [Dataset]
+    spatialResolution: Decimal
+    temporalCoverage: [PeriodOfTime]
+    temporalResolution: Duration
+    theme: [Concept]
+    title: [String]!
+    type: [Concept]
+    version: String
+    versionNotes: [String]
+    wasGeneratedBy: [Activity]
+  }
+
+type DatasetSeries
+  {
+    applicableLegislation: [LegalResource]
+    contactPoint: [Kind]
+    description: [String]!
+    frequency: Frequency
+    geographicalCoverage: [Location]
+    modificationDate: String
+    publisher: Agent
+    releaseDate: String
+    temporalCoverage: [PeriodOfTime]
+    title: [String]!
+  }
+
+type Distribution
+  {
+    accessURL: [Resource]!
+    accessService: [DataService]
+    applicableLegislation: [LegalResource]
+    availability: Concept
+    byteSize: NonNegativeInteger
+    checksum: Checksum
+    compressionFormat: MediaType
+    description: [String]
+    documentation: [Document]
+    downloadURL: [Resource]
+    format: MediaTypeOrExtent
+    hasPolicy: Policy
+    language: [LinguisticSystem]
+    licence: LicenseDocument
+    linkedSchemas: [Standard]
+    mediaType: MediaType
+    modificationDate: String
+    packagingFormat: MediaType
+    releaseDate: String
+    rights: RightsStatement
+    spatialResolution: Decimal
+    status: Concept
+    temporalResolution: Duration
+    title: [String]
+  }
+
+type Document
+  {
+  }
+
+type Frequency
+  {
+  }
+
+type Geometry
+  {
+  }
+
+type Identifier
+  {
+    notation: Uri!
+  }
+
+type Kind
+  {
+  }
+
+type LegalResource
+  {
+  }
+
+type LicenseDocument
+  {
+    type: [Concept]
+  }
+
+type LinguisticSystem
+  {
+  }
+
+type Location
+  {
+    bbox: String
+    centroid: String
+    geometry: Geometry
+  }
+
+type MediaType
+  {
+  }
+
+type MediaTypeOrExtent
+  {
+  }
+
+type PeriodOfTime
+  {
+    beginning: TimeInstant
+    end: TimeInstant
+    endDate: String
+    startDate: String
+  }
+
+type Policy
+  {
+  }
+
+type ProvenanceStatement
+  {
+  }
+
+type Relationship
+  {
+    hadRole: [Role]!
+    relation: [Resource]!
+  }
+
+type Resource
+  {
+  }
+
+type RightsStatement
+  {
+  }
+
+type Role
+  {
+  }
+
+type Standard
+  {
+  }
+
+type SupportiveEntity
+  {
+  }
+
+type TimeInstant
+  {
+  }
+

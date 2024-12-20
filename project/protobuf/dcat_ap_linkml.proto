@@ -1,0 +1,194 @@
+ syntax="proto3";
+ package
+// metamodel_version: 1.7.0
+// See [DCAT-AP specs:Agent](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Agent)
+message Agent
+ {
+ repeated  string name = 0
+  concept type = 0
+ }
+// See [DCAT-AP specs:Catalogue](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Catalogue)
+message Catalogue
+ {
+ repeated  legalResource applicableLegislation = 0
+ repeated  catalogue catalogue = 0
+  agent creator = 0
+ repeated  string description = 0
+ repeated  location geographicalCoverage = 0
+ repeated  dataset hasDataset = 0
+ repeated  catalogue hasPart = 0
+  document homepage = 0
+ repeated  linguisticSystem language = 0
+  licenseDocument licence = 0
+  string modificationDate = 0
+  agent publisher = 0
+ repeated  catalogueRecord record = 0
+  string releaseDate = 0
+  rightsStatement rights = 0
+ repeated  dataService service = 0
+ repeated  periodOfTime temporalCoverage = 0
+ repeated  conceptScheme themes = 0
+ repeated  string title = 0
+ }
+// See [DCAT-AP specs:CatalogueRecord](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#CatalogueRecord)
+message CatalogueRecord
+ {
+ repeated  standard applicationProfile = 0
+  concept changeType = 0
+ repeated  string description = 0
+ repeated  linguisticSystem language = 0
+  string listingDate = 0
+  string modificationDate = 0
+  cataloguedResource primaryTopic = 0
+  catalogueRecord sourceMetadata = 0
+ repeated  string title = 0
+ }
+// See [DCAT-AP specs:Checksum](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Checksum)
+message Checksum
+ {
+  checksumAlgorithm algorithm = 0
+  hexBinary checksumValue = 0
+ }
+// See [DCAT-AP specs:Concept](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Concept)
+message Concept
+ {
+ repeated  string preferredLabel = 0
+ }
+// See [DCAT-AP specs:ConceptScheme](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#ConceptScheme)
+message ConceptScheme
+ {
+ repeated  string title = 0
+ }
+// See [DCAT-AP specs:DataService](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#DataService)
+message DataService
+ {
+  rightsStatement accessRights = 0
+ repeated  legalResource applicableLegislation = 0
+ repeated  standard conformsTo = 0
+ repeated  kind contactPoint = 0
+ repeated  string description = 0
+ repeated  document documentation = 0
+ repeated  resource endpointURL = 0
+ repeated  resource endpointDescription = 0
+ repeated  mediaTypeOrExtent format = 0
+ repeated  string keyword = 0
+ repeated  document landingPage = 0
+  licenseDocument licence = 0
+  agent publisher = 0
+ repeated  dataset servesDataset = 0
+ repeated  concept theme = 0
+ repeated  string title = 0
+ }
+// See [DCAT-AP specs:Dataset](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Dataset)
+message Dataset
+ {
+  rightsStatement accessRights = 0
+ repeated  legalResource applicableLegislation = 0
+ repeated  standard conformsTo = 0
+ repeated  kind contactPoint = 0
+ repeated  agent creator = 0
+ repeated  distribution datasetDistribution = 0
+ repeated  string description = 0
+ repeated  document documentation = 0
+  frequency frequency = 0
+ repeated  location geographicalCoverage = 0
+ repeated  dataset hasVersion = 0
+ repeated  uri identifier = 0
+ repeated  datasetSeries inSeries = 0
+ repeated  resource isReferencedBy = 0
+ repeated  string keyword = 0
+ repeated  document landingPage = 0
+ repeated  linguisticSystem language = 0
+  string modificationDate = 0
+ repeated  identifier otherIdentifier = 0
+ repeated  provenanceStatement provenance = 0
+  agent publisher = 0
+ repeated  attribution qualifiedAttribution = 0
+ repeated  relationship qualifiedRelation = 0
+ repeated  resource relatedResource = 0
+  string releaseDate = 0
+ repeated  distribution sample = 0
+ repeated  dataset source = 0
+  decimal spatialResolution = 0
+ repeated  periodOfTime temporalCoverage = 0
+  duration temporalResolution = 0
+ repeated  concept theme = 0
+ repeated  string title = 0
+ repeated  concept type = 0
+  string version = 0
+ repeated  string versionNotes = 0
+ repeated  activity wasGeneratedBy = 0
+ }
+// See [DCAT-AP specs:DatasetSeries](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#DatasetSeries)
+message DatasetSeries
+ {
+ repeated  legalResource applicableLegislation = 0
+ repeated  kind contactPoint = 0
+ repeated  string description = 0
+  frequency frequency = 0
+ repeated  location geographicalCoverage = 0
+  string modificationDate = 0
+  agent publisher = 0
+  string releaseDate = 0
+ repeated  periodOfTime temporalCoverage = 0
+ repeated  string title = 0
+ }
+// See [DCAT-AP specs:Distribution](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Distribution)
+message Distribution
+ {
+ repeated  resource accessURL = 0
+ repeated  dataService accessService = 0
+ repeated  legalResource applicableLegislation = 0
+  concept availability = 0
+  nonNegativeInteger byteSize = 0
+  checksum checksum = 0
+  mediaType compressionFormat = 0
+ repeated  string description = 0
+ repeated  document documentation = 0
+ repeated  resource downloadURL = 0
+  mediaTypeOrExtent format = 0
+  policy hasPolicy = 0
+ repeated  linguisticSystem language = 0
+  licenseDocument licence = 0
+ repeated  standard linkedSchemas = 0
+  mediaType mediaType = 0
+  string modificationDate = 0
+  mediaType packagingFormat = 0
+  string releaseDate = 0
+  rightsStatement rights = 0
+  decimal spatialResolution = 0
+  concept status = 0
+  duration temporalResolution = 0
+ repeated  string title = 0
+ }
+// See [DCAT-AP specs:Identifier](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Identifier)
+message Identifier
+ {
+  uri notation = 0
+ }
+// See [DCAT-AP specs:LicenseDocument](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#LicenseDocument)
+message LicenseDocument
+ {
+ repeated  concept type = 0
+ }
+// See [DCAT-AP specs:Location](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Location)
+message Location
+ {
+  string bbox = 0
+  string centroid = 0
+  geometry geometry = 0
+ }
+// See [DCAT-AP specs:PeriodOfTime](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#PeriodOfTime)
+message PeriodOfTime
+ {
+  timeInstant beginning = 0
+  timeInstant end = 0
+  string endDate = 0
+  string startDate = 0
+ }
+// See [DCAT-AP specs:Relationship](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Relationship)
+message Relationship
+ {
+ repeated  role hadRole = 0
+ repeated  resource relation = 0
+ }
